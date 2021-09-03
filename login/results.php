@@ -1,6 +1,9 @@
 <?php
     declare(strict_types=1);
 
+    // 書く場所ここであってる？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+    session_start();
+
     require_once dirname(__FILE__) . '/functions.php';
 
     try {
@@ -15,8 +18,6 @@
 
         // functions.phpの中で定義したconnect()関数を呼び出す
         $pdo = connect();
-
-        session_start();
 
         // SELECT フィールド名 FROM テーブル名 WHERE 列名 = 探してるもの
         // データベースの行をひっぱってくる
