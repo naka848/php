@@ -22,7 +22,7 @@
 
 <body>
     <h1 class="bg-info text-white h3 p-3">ログイン画面</h1>
-    <form name="search-form" action="results.php" method="GET">
+    <form name="search-form" action="results.php" method="POST">
 
         　ID　　　：<input type="text" name="userID" value="">
         <br>
@@ -30,5 +30,8 @@
 
         <button type="submit" name="operation" value="search" class="btn btn-primary">ログイン</button>
     </form>
+    <br>
+    <p>アカウントをお持ちでない方はこちら</p>
+    <button onclick="location.href='touroku.html'">新規登録</button>
 </body>
 </html>
