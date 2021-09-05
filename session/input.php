@@ -13,6 +13,7 @@
     // 入力内容の検証（バリデーション）
     if (isset($_POST['operation']) && $_POST['operation'] === 'inquiry'){
         // 更に親切にかくならば、メールアドレスとお問い合わせ内容が書かれていない場合それぞれのメッセージがでるようにする
+        // もしemailかmessageの中身が空白だったら
         if(validate() === false){
             $message = 'メールアドレス・お問合せ内容のいずれも必須入力です。';
             $data = [

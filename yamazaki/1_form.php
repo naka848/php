@@ -21,8 +21,14 @@
     </head>
 
 <body>
+    <h1>コンビニ店員さん操作画面</h1>
+    <p>ログインしてる人：<?=$_POST['userID']?></p>
+    <p>ログイン日時　：<?php
+        $today = date("Y-m-d H:i:s");
+        print_r($today)
+?></p>
     <h1 class="bg-info text-white h3 p-3">商品登録フォーム</h1>
-    <form action="1_insert.php" method="post">
+    <form action="1_insert.php" method="post" class="w-25 m-3">
         <div class="form-group">
             <lavel for="item1">商品名</lavel>
                 <input type="text" name="item-name" class="form-control" id="item1">
@@ -55,8 +61,8 @@
 
     <h1 class="bg-info text-white h3 p-3">商品検索フォーム</h1>
     <form name="search-form" action="2_results.php" method="GET">
-        <input type="text" name="name" value="" class="m-4">
-        <button type="submit" name="operation" value="search" class="btn btn-primary">検索実行</button>
+        <input type="text" name="name" value="" class="form-control w-25 m-3">
+        <button type="submit" name="operation" value="search" class="btn btn-primary m-3">検索実行</button>
     </form>
 </body>
 </html>
