@@ -1,15 +1,39 @@
 <?php
     declare(strict_types=1);
 
+    // 中身が空ではないか確認するための関数を定義
+    function validate()
+    {
+        return ($_POST['userID'] !== '' && $_POST['password'] !== '');
+    }
+
+    // セッションの始め方について書いている
     session_start();
 
-    // $_SESSION セッション変数
-    // セッション変数の登録
-    $_SESSION['bridge'] = 100;
-    // セッション変数の受け取り
-    $b = $_SESSION['bridge'];
-    print "ページ1の値は $b です。 \n";
-
+    // 入力内容の検証（バリデーション）
+    if (isset($_POST['userID']) && $_POST['password'] === 'inquiry'){
+        // 更に親切にかくならば、メールアドレスとお問い合わせ内容が書かれていない場合それぞれのメッセージがでるようにする
+        // もしemailかmessageの中身が空白だったら
+        if(validate() === false){
+            $message = 'メールアドレス・お問合せ内容のいずれも必須入力です。';
+            $data = [
+                'email' => $_POST['email'],
+                'message' => $_POST['message']
+            ];
+        }else{
+            $_SESSION['data']=[
+                'email' => $_POST['email'],
+                'message' => $_POST['message']
+            ];
+            header('Location:confirm.php');
+            return;
+        }
+    }elseif(isset($_SESSION['data'])){
+        $data = [
+            'email' => $_SESSION['data']['email'],
+            'message' => $_SESSION['data']['message']
+        ];
+    }
 ?>
 
 <!DOCTYPE html>
