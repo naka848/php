@@ -5,10 +5,10 @@
 
     // $_SESSION セッション変数
     // セッション変数の登録
-    $_SESSION['bridge'] = 100;
-    // セッション変数の受け取り
-    $b = $_SESSION['bridge'];
-    print "ページ1の値は $b です。 \n";
+    $_SESSION['data'] =[
+        'userID' => $_POST['userID'],
+        'password' => $_POST['password'],
+    ]
 
 ?>
 
