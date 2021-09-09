@@ -1,3 +1,8 @@
+<?php
+    declare(strict_types=1);
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -22,7 +27,7 @@
 
 <body>
     <h1>コンビニ店員さん操作画面</h1>
-    <p>ログインしてる人：<?=$_POST['userID']?></p>
+    <p>ログインしてる人：<?=$_SESSION['data']['userID'];?></p>
     <p>ログイン日時　：<?php
         $today = date("Y-m-d H:i:s");
         print_r($today)

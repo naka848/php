@@ -10,7 +10,7 @@
 
     try {
         // もしIDが入力されていないか、空白しか入力されていない場合は、
-        if (!isset($_SESSION['data']['userID']) || trim($_SESSION['data']['userID'])=== '') {
+        if (!isset($_POST['userID']) || trim($_POST['userID'])=== '') {
             echo '必要な値が入っていません。';
         }
 
@@ -18,12 +18,12 @@
         $pdo = connect();
         $statement = $pdo->prepare('SELECT * FROM sign WHERE userID = :userID');
         // bindValue ($パラメータID, $バインドする値 [, $PDOデータ型定数] )
-        $statement->bindValue(':userID', $_SESSION['data']['userID'], PDO::PARAM_STR);
+        $statement->bindValue(':userID', $_POST['userID'], PDO::PARAM_STR);
         // 実行
         $statement->execute();
 
         $row = $statement->fetch(PDO::FETCH_ASSOC);
-        if($row['password'] == $_SESSION['data']['password']){
+        if($row['password'] == $_POST['password']){
             header("location: ../yamazaki/1_form.php");
         }else{
         echo 'ログインに失敗しました！';
