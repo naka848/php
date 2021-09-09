@@ -8,7 +8,8 @@
     $_SESSION['data'] =[
         'userID' => $_POST['userID'],
         'password' => $_POST['password'],
-    ]
+    ];
+    // header('Location:confirm.php');
 
 ?>
 
@@ -36,7 +37,8 @@
 
 <body>
     <h1 class="bg-info text-white h3 p-3">ログイン画面</h1>
-    <form name="search-form" action="results.php" method="POST">
+    <!-- <form name="search-form" action="results.php" method="POST"> -->
+    <form name="search-form" action="confirm.php" method="POST">
 
         　ID　　　：<input type="text" name="userID" value="">
         <br>
