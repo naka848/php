@@ -9,25 +9,25 @@
 
 @section('content')
 
-    <p>ここが本文のコンテンツです。</p>
-    {{-- <p>必要なだけ記述できます。</p> --}}
+    <p>{{ $msg }}</p>
+    @if (count($errors)>0)
+    <p>入力に問題があります。再入力したください</p>
+    @endif
+<form action="/hello" method="post">
+    <table>
+        @csrf
+        @error('name')
+            <tr>
+                <th>ERROR</th>
+                <td>{{$message}}</td>
+            </tr>
+        @enderror
 
-    {{-- @component('components.message')
-        @slot('msg_title')
-        CAUTION!
-        @endslot
+        <tr><th>name: </th><td><input type="text" name="name" value="{{old('name')}}"></td></tr>
 
-        @slot('msg_content')
-        これはメッセージの表示です。
-        @endslot        
-    @endcomponent --}}
-
-    {{-- @include('components.message',['msg_title'=>'OK','msg_content'=>'サブビューです。']) --}}
-
-    <ul>
-        @each('components.item','$data','item')
-    </ul>
-
+        <tr><th></th><td><input type="submit" value="send"></td></tr>
+    </table>
+</form>
 @endsection
 
 @section('footer')

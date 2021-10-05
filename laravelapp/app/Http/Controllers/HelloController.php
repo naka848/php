@@ -7,9 +7,8 @@ use Illuminate\Http\Response;
 
 class HelloController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-       $data = ['one','two','three'];
-       return view('hello.index',['data'=>$data]);
+       return view('hello.index',['msg'=>'huhu']);
     }
 }
