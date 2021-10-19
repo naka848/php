@@ -10,20 +10,8 @@ class HelloController extends Controller
 {
     public function index(Request $request)
     {
-        // $items = DB::table('people')->get();
-        // return view('hello.index', ['items'=>$items]);
-        $items = DB::table('people')->orderBy('age','asc')->get();
+        $items = DB::select('select * from people');
         return view('hello.index', ['items'=>$items]);
-    }
-
-    public function show(Request $request)
-    {
-        $page = $request->page;
-        $items = DB::table('people')
-            ->offset($page * 3)
-            ->limit(3)
-            ->get();
-        return view('hello.show',['items' => $items]);
     }
 
     public function post(Request $request)
@@ -48,7 +36,7 @@ class HelloController extends Controller
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::table('people')->insert($param);
+        DB::insert('insert into people (name,mail,age) values(:name,:mail,:age)', $param);
 
         // ここのreturnはViewではなくリダイレクトになっている
         return redirect('/hello');
@@ -56,23 +44,20 @@ class HelloController extends Controller
 
     public function edit(Request $request)
     {
-        // $param = ['id' => $request->id];
-        $item = DB::table('people')
-            ->where('id',$request->id)->first();
-        return view('hello.edit',['form' => $item]);
+        $param = ['id' => $request->id];
+        $item = DB::select('select * from people where id = :id',$param);
+        return view('hello.edit',['form' => $item[0]]);
     }
 
     public function update(Request $request)
     {
         $param = [
-            // 'id' => $request->id,
+            'id' => $request->id,
             'name' => $request->name,
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::table('people')
-            ->where('id',$request->id)
-            ->update($param);
+        DB::update('update people set name = :name,mail=:mail,age=:age where id=:id',$param);
         return redirect('/hello');
     }
 }
