@@ -23,4 +23,16 @@ class Person extends Model
     {
         return $this->id . ': ' .$this->name .' ( ' .$this->age.')';
     }
+
+    // boardsテーブルのレコードを取り出せるようにする
+    // public function board()
+    // {
+    //     // hasOne(関連付けるモデル)
+    //     return $this->hasOne('App\Board');
+    // }
+
+    public function boards()
+    {
+        return $this->hasMany('App\Board');
+    }
 }
